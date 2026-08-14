@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pesan Menu Online</title>
+  <meta name="description" content="Pesan menu favoritmu langsung dari sini, terhubung ke WhatsApp." />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="tampilan/utama.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="header">
+    <div class="header__inner container">
+      <div class="brand">
+        <div class="brand__logo" id="storeLogoText">--</div>
+        <div class="brand__text">
+          <h1 class="brand__name" id="storeName">Nama Toko</h1>
+          <p class="brand__tagline" id="storeTagline">Tagline toko</p>
+        </div>
+      </div>
+
+      <button class="cart-btn" id="cartBtn" aria-label="Buka keranjang">
+        <span class="cart-btn__icon">🛒</span>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero container">
+    <div class="hero__content">
+      <p class="hero__eyebrow">PESAN TANPA PERLU KE WARUNG</p>
+      <h2 class="hero__title">Pesan online,<br />kami antar ke tempat dudukmu.</h2>
+      <p class="hero__desc">
+        Pilih menu, tentukan lokasi, bayar QRIS atau tunai - pesanan langsung
+        kami terima lewat WhatsApp dan kita proses. tidak perlu mengambil tunggu kita datang
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== KATEGORI ===================== -->
+  <section class="category-bar container">
+    <div class="category-list" id="categoryList"></div>
+  </section>
+
+  <!-- ===================== MENU GRID ===================== -->
+  <main class="container">
+    <div class="menu-grid" id="menuGrid"></div>
+  </main>
+
+  <!-- ===================== FLOATING CART BAR (mobile) ===================== -->
+  <button class="float-cart" id="floatCartBar" type="button" aria-label="Buka keranjang belanja">
+    <span class="float-cart__count" id="floatCartCount">0 item</span>
+    <span class="float-cart__total" id="floatCartTotal">Rp 0</span>
+    <span class="float-cart__arrow" aria-hidden="true">→</span>
+  </button>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__store" id="footerStoreName">Nama Toko</p>
+      <p id="footerAddress">Alamat</p>
+      <p id="footerHours">Jam operasional</p>
+      <p id="footerPhone">No. Telepon</p>
+      <p class="footer__copy">© <span id="currentYear"></span> — Inovasi baru dan berbeda dari warung lain.</p>
+    </div>
+  </footer>
+
+  <!-- ===================== OVERLAY (untuk drawer & modal) ===================== -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== CART DRAWER ===================== -->
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer__header">
+      <h3>Keranjang Pesanan</h3>
+      <button class="icon-btn" id="closeCartBtn" aria-label="Tutup keranjang">✕</button>
+    </div>
+
+    <div class="drawer__body" id="cartItemsList"></div>
+
+    <div class="drawer__footer">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">Rp 0</span>
+      </div>
+      <div class="summary-row">
+        <span>Ongkos Kirim</span>
+        <span id="cartOngkir">Rp 0</span>
+      </div>
+      <div class="summary-row summary-row--total">
+        <span>Total</span>
+        <span id="cartTotal">Rp 0</span>
+      </div>
+      <button class="btn btn--primary btn--block" id="checkoutBtn" disabled>
+        Lanjut ke Checkout
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===================== CHECKOUT MODAL ===================== -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal__panel">
+      <div class="modal__header">
+        <h3>Checkout Pesanan</h3>
+        <button class="icon-btn" id="closeCheckoutBtn" aria-label="Tutup checkout">✕</button>
+      </div>
+
+      <form id="checkoutForm" class="modal__body">
+        <div class="field">
+          <label for="customerName">Nama Lengkap</label>
+          <input type="text" id="customerName" name="customerName" placeholder="Nama kamu" required />
+        </div>
+
+        <div class="field">
+          <label for="customerPhone">Nomor HP / WhatsApp</label>
+          <input type="tel" id="customerPhone" name="customerPhone" placeholder="08xxxxxxxxxx" required />
+        </div>
+
+        <div class="field">
+          <label for="customerAddress">Alamat Pengantaran</label>
+          <textarea id="customerAddress" name="customerAddress" rows="3" placeholder="Contoh: Nama jalan, nomor rumah, patokan (detail lokasi akan dikonfirmasi via WhatsApp)" required></textarea>
+          <p class="field-hint">Cukup isi alamat singkat — detail lokasi lengkap akan ditanyakan langsung lewat chat WhatsApp.</p>
+        </div>
+
+        <div class="field">
+          <label>Metode Pembayaran</label>
+          <div class="payment-methods" id="paymentMethods"></div>
+          <div class="qris-preview" id="qrisPreview">
+            <img src="aset/qris-contoh.svg" alt="QRIS toko" id="qrisImage" />
+            <p>Scan QR di atas menggunakan e-wallet / m-banking, lalu kirim bukti bayar via chat WhatsApp.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="customerNotes">Catatan (opsional)</label>
+          <textarea id="customerNotes" name="customerNotes" rows="2" placeholder="Contoh: tidak pakai sambal, dsb"></textarea>
+        </div>
+
+        <div class="checkout-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="checkoutSubtotal">Rp 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Ongkos Kirim</span>
+            <span id="checkoutOngkir">Rp 0</span>
+          </div>
+          <div class="summary-row summary-row--total">
+            <span>Total</span>
+            <span id="checkoutTotal">Rp 0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn--whatsapp btn--block">
+          Kirim Pesanan via WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================== MODAL PILIH VARIAN ===================== -->
+  <div class="modal" id="variantModal">
+    <div class="modal__panel">
+      <div class="modal__header">
+        <h3><span id="variantModalEmoji"></span> <span id="variantModalTitle">Pilih Varian</span></h3>
+        <button class="icon-btn" id="closeVariantModalBtn" aria-label="Tutup pilihan varian">✕</button>
+      </div>
+
+      <div class="modal__body">
+        <p class="field-hint" id="variantModalDesc"></p>
+
+        <div id="variantModalGroups"></div>
+
+        <div class="field">
+          <label>Jumlah</label>
+          <div class="qty-control">
+            <button type="button" class="qty-btn" id="variantQtyMinus">−</button>
+            <span class="qty-value" id="variantQtyValue">1</span>
+            <button type="button" class="qty-btn" id="variantQtyPlus">+</button>
+          </div>
+        </div>
+
+        <div class="checkout-summary">
+          <div class="summary-row summary-row--total">
+            <span>Total</span>
+            <span id="variantModalTotal">Rp 0</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn--outline btn--block" id="variantAddToCartBtn">
+          Tambah ke Keranjang
+        </button>
+        <button type="button" class="btn btn--primary btn--block" id="variantBuyNowBtn">
+          Beli Langsung
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== TOAST NOTIFIKASI ===================== -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ===================== SKRIP ===================== -->
+  <!-- Urutan penting: pengaturan -> data -> inti -> layanan -> komponen -> aplikasi -->
+
+  <!-- 1. PENGATURAN -->
+  <script src="skrip/pengaturan/toko.pengaturan.js"></script>
+  <script src="skrip/pengaturan/pengiriman.pengaturan.js"></script>
+  <script src="skrip/pengaturan/pembayaran.pengaturan.js"></script>
+  <script src="skrip/pengaturan/label.pengaturan.js"></script>
+  <script src="skrip/pengaturan/penggabung.js"></script>
+
+  <!-- 2. DATA (Dimuat secara berurutan) -->
+  <script src="skrip/data/kategori-menu.data.js"></script>
+  <script src="skrip/data/data-makanan.js"></script>
+  <script src="skrip/data/data-camilan.js"></script>
+  <script src="skrip/data/data-minuman.js"></script>
+  <script src="skrip/data/data-mie.js"></script>
+  <script src="skrip/data/item-menu.data.js"></script>
+
+  <!-- 3. INTI -->
+  <script src="skrip/inti/penghubung.js"></script>
+  <script src="skrip/inti/penyimpanan.layanan.js"></script>
+  <script src="skrip/inti/format.js"></script>
+
+  <!-- 4. LAYANAN -->
+  <script src="skrip/layanan/keranjang.layanan.js"></script>
+  <script src="skrip/layanan/pengiriman.layanan.js"></script>
+  <script src="skrip/layanan/whatsapp.layanan.js"></script>
+
+  <!-- 5. KOMPONEN -->
+  <script src="skrip/komponen/info-toko.komponen.js"></script>
+  <script src="skrip/komponen/kategori.komponen.js"></script>
+  <script src="skrip/komponen/menu.komponen.js"></script>
+  <script src="skrip/komponen/varian.komponen.js"></script>
+  <script src="skrip/komponen/laci-keranjang.komponen.js"></script>
+  <script src="skrip/komponen/keranjang-mengambang.komponen.js"></script>
+  <script src="skrip/komponen/metode-pembayaran.komponen.js"></script>
+  <script src="skrip/komponen/modal-checkout.komponen.js"></script>
+  <script src="skrip/komponen/lapisan.komponen.js"></script>
+  <script src="skrip/komponen/notifikasi.komponen.js"></script>
+
+  <!-- 6. APLIKASI -->
+  <script src="skrip/aplikasi.js"></script>
+</body>
+</html>

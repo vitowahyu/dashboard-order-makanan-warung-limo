@@ -1,0 +1,43 @@
+/* ============================================================
+   RESPONSIVE.CSS — OVERRIDE UNTUK LAYAR KECIL
+   ============================================================
+   Sengaja dipisah dari file komponen karena aturan di sini
+   MENIMPA banyak komponen sekaligus (hero, menu-grid, drawer,
+   toast, float-cart). Import file ini PALING TERAKHIR di
+   style.css supaya urutan cascade (prioritas CSS) benar.
+   ============================================================ */
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 36px 20px 28px;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .menu-card__image {
+    height: 100px;
+    font-size: 40px;
+  }
+
+  .drawer {
+    max-width: 100%;
+  }
+
+  .toast {
+    bottom: 90px;
+    white-space: normal;
+    max-width: 90%;
+    text-align: center;
+  }
+}
+
+/* Menghormati preferensi reduced motion pengguna */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

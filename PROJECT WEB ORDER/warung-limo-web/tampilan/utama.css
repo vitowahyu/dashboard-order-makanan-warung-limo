@@ -1,0 +1,42 @@
+/* ============================================================
+   UTAMA.CSS — ENTRY POINT DESAIN VISUAL
+   ============================================================
+   File ini TIDAK berisi style langsung — hanya mengimpor semua
+   potongan CSS dari folder dasar/, tata-letak/, dan komponen/.
+
+   Mau ganti tampilan bagian tertentu? Cari file-nya langsung,
+   tidak perlu scroll file raksasa:
+     - Warna & font global      -> dasar/variabel.css
+     - Reset elemen dasar       -> dasar/reset.css
+     - Header/Hero/Footer       -> tata-letak/*.css
+     - Kartu menu, tombol, dll  -> komponen/*.css
+     - Override tampilan mobile -> responsif.css (paling akhir)
+   ============================================================ */
+
+/* ---------- 1. DASAR ---------- */
+@import url("dasar/variabel.css");
+@import url("dasar/reset.css");
+
+/* ---------- 2. TATA LETAK ---------- */
+@import url("tata-letak/kontainer.css");
+@import url("tata-letak/header.css");
+@import url("tata-letak/hero.css");
+@import url("tata-letak/footer.css");
+
+/* ---------- 3. KOMPONEN (masing-masing fitur = satu file) ---------- */
+@import url("komponen/chip-kategori.css");
+@import url("komponen/label.css");
+@import url("komponen/kartu-menu.css");
+@import url("komponen/tombol.css");
+@import url("komponen/kontrol-jumlah.css");
+@import url("komponen/keranjang-mengambang.css");
+@import url("komponen/lapisan.css");
+@import url("komponen/laci.css");
+@import url("komponen/modal.css");
+@import url("komponen/varian.css");
+@import url("komponen/kolom-formulir.css");
+@import url("komponen/metode-pembayaran.css");
+@import url("komponen/notifikasi.css");
+
+/* ---------- 4. RESPONSIF (WAJIB PALING TERAKHIR) ---------- */
+@import url("responsif.css");

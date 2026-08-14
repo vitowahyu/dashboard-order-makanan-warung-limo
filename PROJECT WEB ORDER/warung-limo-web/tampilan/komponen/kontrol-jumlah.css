@@ -1,0 +1,38 @@
+/* ---------- QTY CONTROL ---------- */
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--color-surface);
+  border-radius: var(--radius-pill);
+  padding: 4px 6px;
+}
+
+.qty-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qty-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.qty-value {
+  font-weight: 700;
+  font-size: 13.5px;
+  min-width: 14px;
+  text-align: center;
+}
+
+.qty-control--sm {
+  padding: 3px 4px;
+}

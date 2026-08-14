@@ -1,0 +1,41 @@
+/* ============================================================
+   VARIABLES.CSS — DESIGN TOKENS
+   ============================================================
+   Ganti warna/font/radius di sini, otomatis berubah di semua
+   komponen (karena semua komponen memakai var(--nama-token)).
+   ============================================================ */
+
+:root {
+  /* Warna utama */
+  --color-bg: #ffffff;
+  --color-surface: #fafaf8;
+  --color-border: #ececea;
+  --color-text: #1c1b1f;
+  --color-text-muted: #767676;
+
+  /* Aksen — merah cabai, identitas F&B */
+  --color-accent: #e2231a;
+  --color-accent-dark: #b81a13;
+  --color-accent-soft: #fdeceb;
+
+  /* Aksen sekunder */
+  --color-gold: #f0a202;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #1da851;
+
+  /* Tipografi */
+  --font-display: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Spacing / radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 3px rgba(28, 27, 31, 0.06);
+  --shadow-md: 0 8px 24px rgba(28, 27, 31, 0.08);
+  --shadow-lg: 0 16px 48px rgba(28, 27, 31, 0.16);
+
+  --header-height: 76px;
+}

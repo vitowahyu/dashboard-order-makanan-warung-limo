@@ -1,0 +1,81 @@
+/* ---------- FLOATING CART BAR (mobile) ---------- */
+.float-cart {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 14px 22px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: inherit;
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  z-index: 25;
+}
+
+.float-cart--visible {
+  display: flex;
+  animation: float-cart-in 0.25s ease;
+}
+
+.float-cart:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.float-cart:active {
+  transform: translateY(0);
+}
+
+.float-cart__count {
+  opacity: 0.9;
+}
+
+.float-cart__total {
+  flex: 1;
+  text-align: center;
+}
+
+.float-cart__arrow {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+}
+
+@keyframes float-cart-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Di layar lebih lebar (tablet/desktop), lebarkan sedikit
+   supaya proporsional dengan grid menu, tapi tetap terpusat
+   dan tidak selebar container penuh. */
+@media (min-width: 640px) {
+  .float-cart {
+    max-width: 560px;
+    padding: 16px 26px;
+    font-size: 15px;
+  }
+}

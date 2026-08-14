@@ -1,0 +1,86 @@
+/*MULTI QUANTITY VARIANT & SPASI KARTU  */
+
+.variant-group {
+  margin-bottom: 20px !important;
+}
+
+.variant-group:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* 2. Container pilihan varian */
+.variant-choices--qty {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-top: 8px;
+}
+
+/* Scrollbar halus */
+.variant-choices--qty::-webkit-scrollbar {
+  width: 5px;
+}
+
+.variant-choices--qty::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* 3. Kartu item varian + / - */
+.variant-choice-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--color-bg-subtle, #f8f9fa);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-md, 10px);
+  transition: all 0.2s ease;
+}
+
+.variant-choice-item:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.variant-choice-item__label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-main, #333);
+}
+
+/* 4. Spasi pemisah untuk pilihan radio biasa seperti Pop Mie & Kepedasan*/
+.variant-choices {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important; 
+  margin-top: 8px !important;
+}
+
+.variant-choice, 
+.payment-option.variant-choice {
+  margin-bottom: 0 !important;
+  padding: 12px 16px !important;
+  border-radius: 10px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Judul Sub-Kategori di dalam pilihan varian */
+.variant-category-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding-left: 2px;
+}
+
+.variant-category-title:first-child {
+  margin-top: 4px;
+}

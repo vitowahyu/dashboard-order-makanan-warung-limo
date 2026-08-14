@@ -1,0 +1,15 @@
+/* ---------- OVERLAY ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 27, 31, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 40;
+}
+
+.overlay--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
