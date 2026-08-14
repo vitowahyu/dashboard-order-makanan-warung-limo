@@ -89,13 +89,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
 }
 
 .menu-card__price {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .soldout-label {
