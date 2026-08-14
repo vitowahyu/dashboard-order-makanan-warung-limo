@@ -44,3 +44,31 @@ main,
 .menu-grid {
   padding-bottom: 100px !important;
 }
+
+.kartu-menu button,
+.menu-card button,
+.kartu-menu__tombol,
+.kartu-menu__btn-add,
+.kartu-menu__tambah,
+.menu-card__btn-add,
+.btn-tambah,
+.tombol-tambah {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  padding: 6px 12px !important;    
+  font-weight: 600 !important;
+  white-space: nowrap !important;  
+  min-height: unset !important;
+  line-height: 1 !important;
+  flex-shrink: 0 !important;
+}
+
+.kartu-menu__footer,
+.menu-card__footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 6px !important;
+}
